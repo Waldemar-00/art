@@ -14816,7 +14816,7 @@ const modals = () => {
   }
 
   bindModal('.button-design', '.popup-design', 'div.popup-design .popup-close');
-  // bindModal('.phone_link', '.popup', '.popup .popup_close');
+  bindModal('.button-consultation', '.popup-consultation', '.popup .popup_close');
   // bindModal('.popup_calc_btn', '.popup_calc', '.popup_calc_close', false);
   // bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close', false);
   // bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close', false);
@@ -14872,7 +14872,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63455" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50109" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
