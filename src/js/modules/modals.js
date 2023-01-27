@@ -1,6 +1,6 @@
 import { setTimeout } from "core-js";
 import e from "cors";
-// let  flag = true;
+let  flag = true;
 const modals = () => {
     function bindModal(openSelector, modalSelector, closeSelector, closeTrigger = true) {
         const open = document.querySelectorAll(openSelector);
@@ -16,7 +16,7 @@ const modals = () => {
                 modal.style.display = 'block';
                 modal.classList.add('faded');
                 document.body.style.overflow = 'hidden';
-                //flag = false;
+                flag = false;
         }));
         console.log(close);
         console.log(modal);
@@ -24,15 +24,13 @@ const modals = () => {
             popups.forEach(popup => popup.style.display = 'none');
             modal.style.display = 'none';
             indentifierBrowser();
-            //flag = true;
-
+            flag = true;
         });
         modal.addEventListener('click', (e) => {
             if (e.target === modal && closeTrigger) {
                 popups.forEach(popup => popup.style.display = 'none');
                 modal.style.display = 'none';
                 indentifierBrowser();
-                //flag = true;
             }
         });
     }
@@ -43,10 +41,10 @@ const modals = () => {
     // bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close', false);
     // bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close', false);
 };
-// function showModalByTime(selector) {
-    // document.querySelector(selector).style.display = 'block';
-    // document.body.style.overflow = 'hidden';
-// }
+function showModalByTime(selector) {
+    document.querySelector(selector).style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
 function indentifierBrowser() {
     if (navigator.userAgent.match('Firefox') ||
         (/Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor))) {
@@ -55,6 +53,10 @@ function indentifierBrowser() {
                 document.body.style.overflow = 'overlay';
             }
 }
-//export { showModalByTime, flag } ;
+setTimeout(() => {
+    if (flag) {
+        showModalByTime(".popup-consultation");
+    }
+}, 3000);
 export { indentifierBrowser };
 export default modals;

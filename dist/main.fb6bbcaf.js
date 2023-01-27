@@ -14777,7 +14777,7 @@ exports.indentifierBrowser = indentifierBrowser;
 var _coreJs = require("core-js");
 var _cors = _interopRequireDefault(require("cors"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-// let  flag = true;
+let flag = true;
 const modals = () => {
   function bindModal(openSelector, modalSelector, closeSelector) {
     let closeTrigger = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
@@ -14793,38 +14793,35 @@ const modals = () => {
       modal.style.display = 'block';
       modal.classList.add('faded');
       document.body.style.overflow = 'hidden';
-      //flag = false;
+      flag = false;
     }));
-
     console.log(close);
     console.log(modal);
     close.addEventListener('click', () => {
       popups.forEach(popup => popup.style.display = 'none');
       modal.style.display = 'none';
       indentifierBrowser();
-      //flag = true;
+      flag = true;
     });
-
     modal.addEventListener('click', e => {
       if (e.target === modal && closeTrigger) {
         popups.forEach(popup => popup.style.display = 'none');
         modal.style.display = 'none';
         indentifierBrowser();
-        //flag = true;
       }
     });
   }
-
   bindModal('.button-design', '.popup-design', 'div.popup-design .popup-close');
   bindModal('.button-consultation', '.popup-consultation', '.popup-close');
   // bindModal('.popup_calc_btn', '.popup_calc', '.popup_calc_close', false);
   // bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close', false);
   // bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close', false);
 };
-// function showModalByTime(selector) {
-// document.querySelector(selector).style.display = 'block';
-// document.body.style.overflow = 'hidden';
-// }
+
+function showModalByTime(selector) {
+  document.querySelector(selector).style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
 function indentifierBrowser() {
   if (navigator.userAgent.match('Firefox') || /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor)) {
     document.body.style.overflow = '';
@@ -14832,7 +14829,11 @@ function indentifierBrowser() {
     document.body.style.overflow = 'overlay';
   }
 }
-//export { showModalByTime, flag } ;
+(0, _coreJs.setTimeout)(() => {
+  if (flag) {
+    showModalByTime(".popup-consultation");
+  }
+}, 3000);
 var _default = modals;
 exports.default = _default;
 },{"core-js":"../node_modules/core-js/index.js","cors":"../node_modules/cors/lib/index.js"}],"js/main.js":[function(require,module,exports) {
@@ -14872,7 +14873,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58522" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60078" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
