@@ -14850,10 +14850,155 @@ openModalByScroll('.fixed-gift');
 }, 60000);
 var _default = modals;
 exports.default = _default;
-},{"core-js":"../node_modules/core-js/index.js","cors":"../node_modules/cors/lib/index.js"}],"js/main.js":[function(require,module,exports) {
+},{"core-js":"../node_modules/core-js/index.js","cors":"../node_modules/cors/lib/index.js"}],"../node_modules/ee-first/index.js":[function(require,module,exports) {
+/*!
+ * ee-first
+ * Copyright(c) 2014 Jonathan Ong
+ * MIT Licensed
+ */
+
+'use strict'
+
+/**
+ * Module exports.
+ * @public
+ */
+
+module.exports = first
+
+/**
+ * Get the first event in a set of event emitters and event pairs.
+ *
+ * @param {array} stuff
+ * @param {function} done
+ * @public
+ */
+
+function first(stuff, done) {
+  if (!Array.isArray(stuff))
+    throw new TypeError('arg must be an array of [ee, events...] arrays')
+
+  var cleanups = []
+
+  for (var i = 0; i < stuff.length; i++) {
+    var arr = stuff[i]
+
+    if (!Array.isArray(arr) || arr.length < 2)
+      throw new TypeError('each array member must be [ee, events...]')
+
+    var ee = arr[0]
+
+    for (var j = 1; j < arr.length; j++) {
+      var event = arr[j]
+      var fn = listener(event, callback)
+
+      // listen to the event
+      ee.on(event, fn)
+      // push this listener to the list of cleanups
+      cleanups.push({
+        ee: ee,
+        event: event,
+        fn: fn,
+      })
+    }
+  }
+
+  function callback() {
+    cleanup()
+    done.apply(null, arguments)
+  }
+
+  function cleanup() {
+    var x
+    for (var i = 0; i < cleanups.length; i++) {
+      x = cleanups[i]
+      x.ee.removeListener(x.event, x.fn)
+    }
+  }
+
+  function thunk(fn) {
+    done = fn
+  }
+
+  thunk.cancel = cleanup
+
+  return thunk
+}
+
+/**
+ * Create the event listener.
+ * @private
+ */
+
+function listener(event, done) {
+  return function onevent(arg1) {
+    var args = new Array(arguments.length)
+    var ee = this
+    var err = event === 'error'
+      ? arg1
+      : null
+
+    // copy args to prevent arguments escaping scope
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i]
+    }
+
+    done(err, ee, event, args)
+  }
+}
+
+},{}],"js/modules/sliders.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _eeFirst = _interopRequireDefault(require("ee-first"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+const sliders = (slides, direction, previous, nexter) => {
+  let firstSlide = 1;
+  const items = document.querySelectorAll(slides);
+  function toSlide(n) {
+    if (n > items.length) {
+      firstSlide = 1;
+    }
+    if (n < 1) {
+      firstSlide = items.length;
+    }
+    items.forEach(item => {
+      item.style.display = 'none';
+      item.classList.add('animated');
+    });
+    items[firstSlide - 1].style.display = 'block';
+  }
+  toSlide(firstSlide);
+  function slideMove(step) {
+    toSlide(firstSlide += step);
+  }
+  try {
+    const prev = document.querySelector(previous);
+    const next = document.querySelector(nexter);
+    prev.addEventListener('click', () => {
+      slideMove(-1);
+      items[firstSlide - 1].classList.remove('slideInLeft');
+      items[firstSlide - 1].classList.add('slideInRight');
+    });
+    next.addEventListener('click', () => {
+      slideMove(1);
+      items[firstSlide - 1].classList.remove('slideInRight');
+      items[firstSlide - 1].classList.add('slideInLeft');
+    });
+  } catch (e) {}
+};
+var _default = sliders;
+exports.default = _default;
+},{"ee-first":"../node_modules/ee-first/index.js"}],"js/main.js":[function(require,module,exports) {
 "use strict";
 
 var _modals = _interopRequireWildcard(require("./modules/modals"));
+var _sliders = _interopRequireDefault(require("./modules/sliders"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 window.addEventListener("DOMContentLoaded", () => {
@@ -14861,8 +15006,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   (0, _modals.indentifierBrowser)();
   (0, _modals.default)();
+  (0, _sliders.default)('.feedback-slider-item', '', '.main-prev-btn', '.main-next-btn');
 });
-},{"./modules/modals":"js/modules/modals.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -14887,7 +15033,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62206" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59734" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
