@@ -38,24 +38,27 @@ const sliders = (slides, direction, previous, nexter) => {
         });
 
     } catch (e) { }
-
+    function runVertical() {
+        slideStep(1);
+        items[firstSlide - 1].classList.add('slideInDown');
+        interval = setTimeout(runVertical, 3000);
+    }
+    function runHorizontal() {
+        slideStep(1);
+        items[firstSlide - 1].classList.remove('slideInRight');
+        items[firstSlide - 1].classList.add('slideInLeft');
+        interval = setTimeout(runHorizontal, 4000);
+    }
     function slideAnimate(dir) {
         if (dir === 'vertical') {
-            interval = setInterval(() => {
-                slideStep(1);
-                items[firstSlide - 1].classList.add('slideInDown');
-            }, 3000);
+            runVertical();
         } else {
-            interval = setInterval(() => {
-            slideStep(1);
-                items[firstSlide - 1].classList.remove('slideInRight');
-                items[firstSlide - 1].classList.add('slideInLeft');
-            }, 4000);
+            runHorizontal();
         }
-        items[0].parentElement.addEventListener('mouseenter', () => {
-            clearInterval(interval);
+        items[0].parentNode.addEventListener('mouseenter', () => {
+            clearTimeout(interval);
         });
-        items[0].parentElement.addEventListener('mouseleave', () => {
+        items[0].parentNode.addEventListener('mouseleave', () => {
             slideAnimate(direction);
         });
     }
