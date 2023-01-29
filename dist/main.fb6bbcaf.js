@@ -14958,6 +14958,7 @@ var _eeFirst = _interopRequireDefault(require("ee-first"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 const sliders = (slides, direction, previous, nexter) => {
   let firstSlide = 1;
+  let interval;
   const items = document.querySelectorAll(slides);
   function toSlide(n) {
     if (n > items.length) {
@@ -14990,37 +14991,27 @@ const sliders = (slides, direction, previous, nexter) => {
       items[firstSlide - 1].classList.add('slideInLeft');
     });
   } catch (e) {}
-  function slideVertical(dir) {
+  function slideAnimate(dir) {
     if (dir === 'vertical') {
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         slideStep(1);
         items[firstSlide - 1].classList.add('slideInDown');
-        items.forEach(item => {
-          item.addEventListener('mouseenter', () => {
-            clearInterval(interval);
-          });
-          item.addEventListener('mouseleave', () => {
-            slideVertical(direction);
-          });
-        });
       }, 3000);
     } else {
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         slideStep(1);
         items[firstSlide - 1].classList.remove('slideInRight');
         items[firstSlide - 1].classList.add('slideInLeft');
-        items.forEach(item => {
-          item.addEventListener('mouseenter', () => {
-            clearInterval(interval);
-          });
-          item.addEventListener('mouseleave', () => {
-            slideVertical(direction);
-          });
-        });
       }, 4000);
     }
+    items[0].parentElement.addEventListener('mouseenter', () => {
+      clearInterval(interval);
+    });
+    items[0].parentElement.addEventListener('mouseleave', () => {
+      slideAnimate(direction);
+    });
   }
-  slideVertical(direction);
+  slideAnimate(direction);
 };
 var _default = sliders; // sliders('.feedback-slider-item', '', '.main-prev-btn', '.main-next-btn');
 // sliders('.main-slider-item', 'vertical', '', '');
@@ -15067,7 +15058,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55801" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59813" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
