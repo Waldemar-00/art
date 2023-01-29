@@ -14973,25 +14973,57 @@ const sliders = (slides, direction, previous, nexter) => {
     items[firstSlide - 1].style.display = 'block';
   }
   toSlide(firstSlide);
-  function slideMove(step) {
+  function slideStep(step) {
     toSlide(firstSlide += step);
   }
   try {
     const prev = document.querySelector(previous);
     const next = document.querySelector(nexter);
     prev.addEventListener('click', () => {
-      slideMove(-1);
+      slideStep(-1);
       items[firstSlide - 1].classList.remove('slideInLeft');
       items[firstSlide - 1].classList.add('slideInRight');
     });
     next.addEventListener('click', () => {
-      slideMove(1);
+      slideStep(1);
       items[firstSlide - 1].classList.remove('slideInRight');
       items[firstSlide - 1].classList.add('slideInLeft');
     });
   } catch (e) {}
+  function slideVertical(dir) {
+    if (dir === 'vertical') {
+      const interval = setInterval(() => {
+        slideStep(1);
+        items[firstSlide - 1].classList.add('slideInDown');
+        items.forEach(item => {
+          item.addEventListener('mouseenter', () => {
+            clearInterval(interval);
+          });
+          item.addEventListener('mouseleave', () => {
+            slideVertical(direction);
+          });
+        });
+      }, 3000);
+    } else {
+      const interval = setInterval(() => {
+        slideStep(1);
+        items[firstSlide - 1].classList.remove('slideInRight');
+        items[firstSlide - 1].classList.add('slideInLeft');
+        items.forEach(item => {
+          item.addEventListener('mouseenter', () => {
+            clearInterval(interval);
+          });
+          item.addEventListener('mouseleave', () => {
+            slideVertical(direction);
+          });
+        });
+      }, 4000);
+    }
+  }
+  slideVertical(direction);
 };
-var _default = sliders;
+var _default = sliders; // sliders('.feedback-slider-item', '', '.main-prev-btn', '.main-next-btn');
+// sliders('.main-slider-item', 'vertical', '', '');
 exports.default = _default;
 },{"ee-first":"../node_modules/ee-first/index.js"}],"js/main.js":[function(require,module,exports) {
 "use strict";
@@ -15006,7 +15038,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   (0, _modals.indentifierBrowser)();
   (0, _modals.default)();
-  (0, _sliders.default)('.feedback-slider-item', '', '.main-prev-btn', '.main-next-btn');
+  (0, _sliders.default)('.feedback-slider-item', 'horizontal', '.main-prev-btn', '.main-next-btn');
+  (0, _sliders.default)('.main-slider-item', 'vertical');
+  //sliders('.portfolio-block', '');
 });
 },{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -15033,7 +15067,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59734" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55801" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
