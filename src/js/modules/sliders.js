@@ -47,7 +47,7 @@ const sliders = (slides, direction, previous, nexter) => {
         slideStep(1);
         items[firstSlide - 1].classList.remove('slideInRight');
         items[firstSlide - 1].classList.add('slideInLeft');
-        interval = setTimeout(runHorizontal, 4000);
+        interval = setTimeout(runHorizontal, 3000);
     }
     function slideAnimate(dir) {
         if (dir === 'vertical') {

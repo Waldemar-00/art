@@ -15000,7 +15000,7 @@ const sliders = (slides, direction, previous, nexter) => {
     slideStep(1);
     items[firstSlide - 1].classList.remove('slideInRight');
     items[firstSlide - 1].classList.add('slideInLeft');
-    interval = setTimeout(runHorizontal, 4000);
+    interval = setTimeout(runHorizontal, 3000);
   }
   function slideAnimate(dir) {
     if (dir === 'vertical') {
@@ -15062,7 +15062,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57389" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57826" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
