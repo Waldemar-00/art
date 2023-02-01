@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+})({"../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -142,7 +142,7 @@ function getBaseURL(url) {
 }
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 function updateLink(link) {
   var newLink = link.cloneNode();
@@ -168,11 +168,11 @@ function reloadCSS() {
   }, 50);
 }
 module.exports = reloadCSS;
-},{"./bundle-url":"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"assets/css/main.css":[function(require,module,exports) {
+},{"./bundle-url":"../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"assets/css/main.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./..\\fonts\\Circe-Light.eot":[["Circe-Light.559d8262.eot","assets/fonts/Circe-Light.eot"],"assets/fonts/Circe-Light.eot"],"./..\\fonts\\Circe-Light.woff":[["Circe-Light.42b9993d.woff","assets/fonts/Circe-Light.woff"],"assets/fonts/Circe-Light.woff"],"./..\\fonts\\Circe-Light.ttf":[["Circe-Light.60d72530.ttf","assets/fonts/Circe-Light.ttf"],"assets/fonts/Circe-Light.ttf"],"./..\\fonts\\Circe-Regular.eot":[["Circe-Regular.2a07f31f.eot","assets/fonts/Circe-Regular.eot"],"assets/fonts/Circe-Regular.eot"],"./..\\fonts\\Circe-Regular.woff":[["Circe-Regular.e1a916d7.woff","assets/fonts/Circe-Regular.woff"],"assets/fonts/Circe-Regular.woff"],"./..\\fonts\\Circe-Regular.ttf":[["Circe-Regular.f395570f.ttf","assets/fonts/Circe-Regular.ttf"],"assets/fonts/Circe-Regular.ttf"],"./..\\fonts\\Circe-Bold.eot":[["Circe-Bold.bcdc445f.eot","assets/fonts/Circe-Bold.eot"],"assets/fonts/Circe-Bold.eot"],"./..\\fonts\\Circe-Bold.woff":[["Circe-Bold.8191949e.woff","assets/fonts/Circe-Bold.woff"],"assets/fonts/Circe-Bold.woff"],"./..\\fonts\\Circe-Bold.ttf":[["Circe-Bold.6080c41b.ttf","assets/fonts/Circe-Bold.ttf"],"assets/fonts/Circe-Bold.ttf"],"./..\\fonts\\Circe-ExtraBold.eot":[["Circe-ExtraBold.8c860b3c.eot","assets/fonts/Circe-ExtraBold.eot"],"assets/fonts/Circe-ExtraBold.eot"],"./..\\fonts\\Circe-ExtraBold.woff":[["Circe-ExtraBold.61bddaf0.woff","assets/fonts/Circe-ExtraBold.woff"],"assets/fonts/Circe-ExtraBold.woff"],"./..\\fonts\\Circe-ExtraBold.ttf":[["Circe-ExtraBold.8855dfe5.ttf","assets/fonts/Circe-ExtraBold.ttf"],"assets/fonts/Circe-ExtraBold.ttf"],"./..\\img\\camera.svg":[["camera.910475fa.svg","assets/img/camera.svg"],"assets/img/camera.svg"],"./..\\img\\down-arrow.svg":[["down-arrow.1f6c4cd4.svg","assets/img/down-arrow.svg"],"assets/img/down-arrow.svg"],"./..\\img\\24-hours.svg":[["24-hours.0b54c341.svg","assets/img/24-hours.svg"],"assets/img/24-hours.svg"],"./..\\img\\reload.svg":[["reload.d245f3b6.svg","assets/img/reload.svg"],"assets/img/reload.svg"],"./..\\img\\gift-bg.jpg":[["gift-bg.e826098a.jpg","assets/img/gift-bg.jpg"],"assets/img/gift-bg.jpg"],"./..\\img\\sizes-bg.jpg":[["sizes-bg.7633f451.jpg","assets/img/sizes-bg.jpg"],"assets/img/sizes-bg.jpg"],"./..\\img\\heart.png":[["heart.53d39ed7.png","assets/img/heart.png"],"assets/img/heart.png"],"_css_loader":"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./..\\fonts\\Circe-Light.eot":[["Circe-Light.559d8262.eot","assets/fonts/Circe-Light.eot"],"assets/fonts/Circe-Light.eot"],"./..\\fonts\\Circe-Light.woff":[["Circe-Light.42b9993d.woff","assets/fonts/Circe-Light.woff"],"assets/fonts/Circe-Light.woff"],"./..\\fonts\\Circe-Light.ttf":[["Circe-Light.60d72530.ttf","assets/fonts/Circe-Light.ttf"],"assets/fonts/Circe-Light.ttf"],"./..\\fonts\\Circe-Regular.eot":[["Circe-Regular.2a07f31f.eot","assets/fonts/Circe-Regular.eot"],"assets/fonts/Circe-Regular.eot"],"./..\\fonts\\Circe-Regular.woff":[["Circe-Regular.e1a916d7.woff","assets/fonts/Circe-Regular.woff"],"assets/fonts/Circe-Regular.woff"],"./..\\fonts\\Circe-Regular.ttf":[["Circe-Regular.f395570f.ttf","assets/fonts/Circe-Regular.ttf"],"assets/fonts/Circe-Regular.ttf"],"./..\\fonts\\Circe-Bold.eot":[["Circe-Bold.bcdc445f.eot","assets/fonts/Circe-Bold.eot"],"assets/fonts/Circe-Bold.eot"],"./..\\fonts\\Circe-Bold.woff":[["Circe-Bold.8191949e.woff","assets/fonts/Circe-Bold.woff"],"assets/fonts/Circe-Bold.woff"],"./..\\fonts\\Circe-Bold.ttf":[["Circe-Bold.6080c41b.ttf","assets/fonts/Circe-Bold.ttf"],"assets/fonts/Circe-Bold.ttf"],"./..\\fonts\\Circe-ExtraBold.eot":[["Circe-ExtraBold.8c860b3c.eot","assets/fonts/Circe-ExtraBold.eot"],"assets/fonts/Circe-ExtraBold.eot"],"./..\\fonts\\Circe-ExtraBold.woff":[["Circe-ExtraBold.61bddaf0.woff","assets/fonts/Circe-ExtraBold.woff"],"assets/fonts/Circe-ExtraBold.woff"],"./..\\fonts\\Circe-ExtraBold.ttf":[["Circe-ExtraBold.8855dfe5.ttf","assets/fonts/Circe-ExtraBold.ttf"],"assets/fonts/Circe-ExtraBold.ttf"],"./..\\img\\camera.svg":[["camera.910475fa.svg","assets/img/camera.svg"],"assets/img/camera.svg"],"./..\\img\\down-arrow.svg":[["down-arrow.1f6c4cd4.svg","assets/img/down-arrow.svg"],"assets/img/down-arrow.svg"],"./..\\img\\24-hours.svg":[["24-hours.0b54c341.svg","assets/img/24-hours.svg"],"assets/img/24-hours.svg"],"./..\\img\\reload.svg":[["reload.d245f3b6.svg","assets/img/reload.svg"],"assets/img/reload.svg"],"./..\\img\\gift-bg.jpg":[["gift-bg.e826098a.jpg","assets/img/gift-bg.jpg"],"assets/img/gift-bg.jpg"],"./..\\img\\sizes-bg.jpg":[["sizes-bg.7633f451.jpg","assets/img/sizes-bg.jpg"],"assets/img/sizes-bg.jpg"],"./..\\img\\heart.png":[["heart.53d39ed7.png","assets/img/heart.png"],"assets/img/heart.png"],"_css_loader":"../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -197,7 +197,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63167" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56311" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
@@ -341,5 +341,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+},{}]},{},["../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
 //# sourceMappingURL=/main.2b755954.js.map

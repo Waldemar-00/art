@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+})({"../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -142,7 +142,7 @@ function getBaseURL(url) {
 }
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 function updateLink(link) {
   var newLink = link.cloneNode();
@@ -168,11 +168,11 @@ function reloadCSS() {
   }, 50);
 }
 module.exports = reloadCSS;
-},{"./bundle-url":"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"assets/css/bootstrap.css":[function(require,module,exports) {
+},{"./bundle-url":"../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"assets/css/bootstrap.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./..\\fonts\\glyphicons-halflings-regular.eot":[["glyphicons-halflings-regular.69a446f5.eot","assets/fonts/glyphicons-halflings-regular.eot"],"assets/fonts/glyphicons-halflings-regular.eot"],"./..\\fonts\\glyphicons-halflings-regular.woff2":[["glyphicons-halflings-regular.14e42f41.woff2","assets/fonts/glyphicons-halflings-regular.woff2"],"assets/fonts/glyphicons-halflings-regular.woff2"],"./..\\fonts\\glyphicons-halflings-regular.woff":[["glyphicons-halflings-regular.7feedb01.woff","assets/fonts/glyphicons-halflings-regular.woff"],"assets/fonts/glyphicons-halflings-regular.woff"],"./..\\fonts\\glyphicons-halflings-regular.ttf":[["glyphicons-halflings-regular.29a174b8.ttf","assets/fonts/glyphicons-halflings-regular.ttf"],"assets/fonts/glyphicons-halflings-regular.ttf"],"./..\\fonts\\glyphicons-halflings-regular.svg":[["glyphicons-halflings-regular.f7f96281.svg","assets/fonts/glyphicons-halflings-regular.svg"],"assets/fonts/glyphicons-halflings-regular.svg"],"_css_loader":"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./..\\fonts\\glyphicons-halflings-regular.eot":[["glyphicons-halflings-regular.69a446f5.eot","assets/fonts/glyphicons-halflings-regular.eot"],"assets/fonts/glyphicons-halflings-regular.eot"],"./..\\fonts\\glyphicons-halflings-regular.woff2":[["glyphicons-halflings-regular.14e42f41.woff2","assets/fonts/glyphicons-halflings-regular.woff2"],"assets/fonts/glyphicons-halflings-regular.woff2"],"./..\\fonts\\glyphicons-halflings-regular.woff":[["glyphicons-halflings-regular.7feedb01.woff","assets/fonts/glyphicons-halflings-regular.woff"],"assets/fonts/glyphicons-halflings-regular.woff"],"./..\\fonts\\glyphicons-halflings-regular.ttf":[["glyphicons-halflings-regular.29a174b8.ttf","assets/fonts/glyphicons-halflings-regular.ttf"],"assets/fonts/glyphicons-halflings-regular.ttf"],"./..\\fonts\\glyphicons-halflings-regular.svg":[["glyphicons-halflings-regular.f7f96281.svg","assets/fonts/glyphicons-halflings-regular.svg"],"assets/fonts/glyphicons-halflings-regular.svg"],"_css_loader":"../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -197,7 +197,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63167" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56311" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
@@ -341,5 +341,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+},{}]},{},["../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
 //# sourceMappingURL=/bootstrap.04cbfb1e.js.map

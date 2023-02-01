@@ -15000,7 +15000,7 @@ const sliders = (slides, direction, previous, nexter) => {
     slideStep(1);
     items[firstSlide - 1].classList.remove('slideInRight');
     items[firstSlide - 1].classList.add('slideInLeft');
-    interval = setTimeout(runHorizontal, 4000);
+    interval = setTimeout(runHorizontal, 3000);
   }
   function slideAnimate(dir) {
     if (dir === 'vertical') {
@@ -15037,7 +15037,7 @@ window.addEventListener("DOMContentLoaded", () => {
   (0, _sliders.default)('.main-slider-item', 'vertical');
   //sliders('.portfolio-block', '');
 });
-},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js"}],"../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -15062,7 +15062,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63167" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56311" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
@@ -15206,5 +15206,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/main.js"], null)
+},{}]},{},["../../../../../Users/for_i/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/main.js"], null)
 //# sourceMappingURL=/main.fb6bbcaf.js.map
