@@ -785,7 +785,7 @@
     "typed-array-length": "^1.0.4",
     "typedarray": "^0.0.6",
     "typescript": "^4.9.4",
-    "ua-parser-js": "^1.0.2",
+    "ua-parser-js": "^1.0.33",
     "unbox-primitive": "^1.0.2",
     "unc-path-regex": "^0.1.2",
     "uncss": "^0.17.3",
