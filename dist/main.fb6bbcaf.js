@@ -15020,11 +15020,108 @@ const sliders = (slides, direction, previous, nexter) => {
 var _default = sliders; // sliders('.feedback-slider-item', '', '.main-prev-btn', '.main-next-btn');
 // sliders('.main-slider-item', 'vertical', '', '');
 exports.default = _default;
-},{"ee-first":"../node_modules/ee-first/index.js"}],"js/main.js":[function(require,module,exports) {
+},{"ee-first":"../node_modules/ee-first/index.js"}],"js/modules/forms.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// const checkNum = (selector) => {
+// const inputs = document.querySelectorAll(selector);
+// inputs.forEach((input) => {
+// input.addEventListener('input', () => {
+// input.value = input.value.replace(/\D/, '');
+// });
+// });
+// };
+
+const formsFn = () => {
+  const forms = document.querySelectorAll('form');
+  const inputs = document.querySelectorAll('input');
+  //checkNum('input[name="user_phone"]');
+  const messege = {
+    loading: "Laoding...",
+    success: "Wait for our call!",
+    failure: "Somesing's wrong!",
+    spinner: 'src/assets/img/spinner.gif',
+    ok: 'C:/Users/for_i/OneDrive/Рабочий стол/art/src/assets/img/ok.png',
+    failureImg: 'src/assets/img/fail.png'
+  };
+  const clearInputs = () => {
+    inputs.forEach(input => input.value = '');
+  };
+  const urls = {
+    postText: 'https://jsonplaceholder.typicode.com/posts',
+    postImg: 'https://jsonplaceholder.typicode.com/photos'
+  };
+  const postData = async (url, data) => {
+    const dataObject = {};
+    data.forEach((value, key) => {
+      dataObject[key] = value;
+      console.log(key, value);
+    });
+    console.log(JSON.stringify(dataObject));
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        "Content-type": "application/json;charset=UTF-8"
+      },
+      body: JSON.stringify(dataObject)
+    });
+    return await response.json();
+  };
+  forms.forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const messegeBox = document.createElement('div');
+      messegeBox.classList.add('status');
+      form.parentElement.appendChild(messegeBox);
+      form.classList.add('animated', 'fadeOutUp');
+      setTimeout(() => {
+        form.style.display = 'none';
+      }, 400);
+      const showImg = document.createElement('img');
+      showImg.src = messege.spinner;
+      //showImg.setAttribute('src', messege.spinner);
+      showImg.classList.add('animated', 'fadeInUp');
+      messegeBox.append(showImg);
+      const textMessege = document.createElement('div');
+      textMessege.innerText = messege.loading;
+      messegeBox.append(textMessege);
+      const formData = new FormData(form);
+      let api;
+      form.closest('.popup-design') ? api = urls.postImg : api = urls.postText;
+      console.log(api);
+      postData(api, formData).then(response => {
+        console.log(response);
+        messegeBox.setAttribute('showImg', messege.ok);
+        textMessege.textContent = messege.success;
+      }).catch(() => {
+        messegeBox.setAttribute('showImg', messege.failureImg);
+        textMessege.textContent = messege.failure;
+      }).finally(() => {
+        clearInputs();
+        setTimeout(() => {
+          messegeBox.remove();
+          const mainForms = document.querySelectorAll('.main_form');
+          mainForms.forEach(form => form.style.display = 'none');
+          const close = document.querySelectorAll('[data-closePopup]');
+          close.forEach(popup => popup.style.display = 'none');
+          document.body.style.overflow = 'visible';
+        }, 4000);
+      });
+    });
+  });
+};
+var _default = formsFn;
+exports.default = _default;
+},{}],"js/main.js":[function(require,module,exports) {
 "use strict";
 
 var _modals = _interopRequireWildcard(require("./modules/modals"));
 var _sliders = _interopRequireDefault(require("./modules/sliders"));
+var _forms = _interopRequireDefault(require("./modules/forms"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -15035,9 +15132,9 @@ window.addEventListener("DOMContentLoaded", () => {
   (0, _modals.default)();
   (0, _sliders.default)('.feedback-slider-item', 'horizontal', '.main-prev-btn', '.main-next-btn');
   (0, _sliders.default)('.main-slider-item', 'vertical');
-  //sliders('.portfolio-block', '');
+  (0, _forms.default)();
 });
-},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -15062,7 +15159,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57826" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57094" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
