@@ -15044,9 +15044,9 @@ const formsFn = () => {
     loading: "Laoding...",
     success: "Wait for our call!",
     failure: "Somesing's wrong!",
-    spinner: 'src/assets/img/spinner.gif',
-    ok: 'C:/Users/for_i/OneDrive/Рабочий стол/art/src/assets/img/ok.png',
-    failureImg: 'src/assets/img/fail.png'
+    spinner: './assets/img/spinner.gif',
+    ok: './assets/img/ok.png',
+    failureImg: './assets/img/fail.png'
   };
   const clearInputs = () => {
     inputs.forEach(input => input.value = '');
@@ -15059,9 +15059,8 @@ const formsFn = () => {
     const dataObject = {};
     data.forEach((value, key) => {
       dataObject[key] = value;
-      console.log(key, value);
     });
-    console.log(JSON.stringify(dataObject));
+    console.log(dataObject);
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -15076,7 +15075,7 @@ const formsFn = () => {
       e.preventDefault();
       const messegeBox = document.createElement('div');
       messegeBox.classList.add('status');
-      form.parentElement.appendChild(messegeBox);
+      form.parentElement.append(messegeBox);
       form.classList.add('animated', 'fadeOutUp');
       setTimeout(() => {
         form.style.display = 'none';
@@ -15159,7 +15158,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57094" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52795" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

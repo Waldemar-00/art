@@ -16,9 +16,9 @@ const formsFn = () => {
         loading: "Laoding...",
         success: "Wait for our call!",
         failure: "Somesing's wrong!",
-        spinner: 'src/assets/img/spinner.gif',
-        ok: 'src/assets/img/ok.png',
-        failureImg: 'src/assets/img/fail.png',
+        spinner: './assets/img/spinner.gif',
+        ok: './assets/img/ok.png',
+        failureImg: './assets/img/fail.png',
     };
     const clearInputs = () => {
         inputs.forEach(input => input.value = '');
@@ -31,9 +31,8 @@ const formsFn = () => {
         const dataObject = {};
         data.forEach((value, key) => {
             dataObject[key] = value;
-            console.log(key, value);
         });
-        console.log(JSON.stringify(dataObject));
+        console.log(dataObject);
         const response = await fetch(url , {
             method: 'POST',
             headers: {
@@ -49,7 +48,7 @@ const formsFn = () => {
 
             const messegeBox = document.createElement('div');
             messegeBox.classList.add('status');
-            form.parentElement.appendChild(messegeBox);
+            form.parentElement.append(messegeBox);
             form.classList.add('animated', 'fadeOutUp');
             setTimeout(() => { 
                 form.style.display = 'none';

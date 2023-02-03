@@ -74,7 +74,7 @@ h4 {
   }
 }
 .p15 {
-  font-size: 1.5;
+  font-size: 1.5em;
 }
 .p-heading {
   font-size: 2.2rem;
@@ -1589,7 +1589,7 @@ h4 {
     font-size: 1.5rem;
   }
   .main-features {
-    max-width: auto;
+    width: auto;
     margin-left: 20%;
   }
   .main-slider-btn {
