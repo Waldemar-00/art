@@ -63,7 +63,9 @@ h4 {
   animation-name: faded;
   animation-duration: 1.2s;
 }
-
+.status {
+  text-align: center;
+}
 @keyframes faded {
   from {
     opacity: 0.1;
