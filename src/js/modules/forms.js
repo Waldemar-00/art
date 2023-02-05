@@ -46,7 +46,7 @@ const formsFn = () => {
     uploads.forEach(load => {
         load.addEventListener('input', () => {
             let dots;
-            const array = load.files[0].name.split('.')
+            const array = load.files[0].name.split('.');
             array[0].length > 6 ? dots = '...' : dots = '.';
             const nameImg = array[0].substring(0, 6) +
                 dots + array[1];

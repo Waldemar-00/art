@@ -117,58 +117,177 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
+})({"../node_modules/ee-first/index.js":[function(require,module,exports) {
+/*!
+ * ee-first
+ * Copyright(c) 2014 Jonathan Ong
+ * MIT Licensed
+ */
+
+'use strict'
+
+/**
+ * Module exports.
+ * @public
+ */
+
+module.exports = first
+
+/**
+ * Get the first event in a set of event emitters and event pairs.
+ *
+ * @param {array} stuff
+ * @param {function} done
+ * @public
+ */
+
+function first(stuff, done) {
+  if (!Array.isArray(stuff))
+    throw new TypeError('arg must be an array of [ee, events...] arrays')
+
+  var cleanups = []
+
+  for (var i = 0; i < stuff.length; i++) {
+    var arr = stuff[i]
+
+    if (!Array.isArray(arr) || arr.length < 2)
+      throw new TypeError('each array member must be [ee, events...]')
+
+    var ee = arr[0]
+
+    for (var j = 1; j < arr.length; j++) {
+      var event = arr[j]
+      var fn = listener(event, callback)
+
+      // listen to the event
+      ee.on(event, fn)
+      // push this listener to the list of cleanups
+      cleanups.push({
+        ee: ee,
+        event: event,
+        fn: fn,
+      })
+    }
   }
-  return bundleURL;
+
+  function callback() {
+    cleanup()
+    done.apply(null, arguments)
+  }
+
+  function cleanup() {
+    var x
+    for (var i = 0; i < cleanups.length; i++) {
+      x = cleanups[i]
+      x.ee.removeListener(x.event, x.fn)
+    }
+  }
+
+  function thunk(fn) {
+    done = fn
+  }
+
+  thunk.cancel = cleanup
+
+  return thunk
 }
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
+
+/**
+ * Create the event listener.
+ * @private
+ */
+
+function listener(event, done) {
+  return function onevent(arg1) {
+    var args = new Array(arguments.length)
+    var ee = this
+    var err = event === 'error'
+      ? arg1
+      : null
+
+    // copy args to prevent arguments escaping scope
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i]
+    }
+
+    done(err, ee, event, args)
+  }
+}
+
+},{}],"js/modules/sliders.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _eeFirst = _interopRequireDefault(require("ee-first"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+const sliders = (slides, direction, previous, nexter) => {
+  let firstSlide = 1;
+  let interval;
+  const items = document.querySelectorAll(slides);
+  function toSlide(n) {
+    if (n > items.length) {
+      firstSlide = 1;
+    }
+    if (n < 1) {
+      firstSlide = items.length;
+    }
+    items.forEach(item => {
+      item.style.display = 'none';
+      item.classList.add('animated');
+    });
+    items[firstSlide - 1].style.display = 'block';
+  }
+  toSlide(firstSlide);
+  function slideStep(step) {
+    toSlide(firstSlide += step);
+  }
   try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
+    const prev = document.querySelector(previous);
+    const next = document.querySelector(nexter);
+    prev.addEventListener('click', () => {
+      slideStep(-1);
+      items[firstSlide - 1].classList.remove('slideInLeft');
+      items[firstSlide - 1].classList.add('slideInRight');
+    });
+    next.addEventListener('click', () => {
+      slideStep(1);
+      items[firstSlide - 1].classList.remove('slideInRight');
+      items[firstSlide - 1].classList.add('slideInLeft');
+    });
+  } catch (e) {}
+  function runVertical() {
+    slideStep(1);
+    items[firstSlide - 1].classList.add('slideInDown');
+    interval = setTimeout(runVertical, 3000);
   }
-  return '/';
-}
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-function updateLink(link) {
-  var newLink = link.cloneNode();
-  newLink.onload = function () {
-    link.remove();
-  };
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-var cssTimeout = null;
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
+  function runHorizontal() {
+    slideStep(1);
+    items[firstSlide - 1].classList.remove('slideInRight');
+    items[firstSlide - 1].classList.add('slideInLeft');
+    interval = setTimeout(runHorizontal, 3000);
   }
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
+  function slideAnimate(dir) {
+    if (dir === 'vertical') {
+      runVertical();
+    } else {
+      runHorizontal();
     }
-    cssTimeout = null;
-  }, 50);
-}
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+    items[0].parentNode.addEventListener('mouseenter', () => {
+      clearTimeout(interval);
+    });
+    items[0].parentNode.addEventListener('mouseleave', () => {
+      slideAnimate(direction);
+    });
+  }
+  slideAnimate(direction);
+};
+var _default = sliders; // sliders('.feedback-slider-item', '', '.main-prev-btn', '.main-next-btn');
+// sliders('.main-slider-item', 'vertical', '', '');
+exports.default = _default;
+},{"ee-first":"../node_modules/ee-first/index.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -337,5 +456,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/index.js.map
+},{}]},{},["../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/modules/sliders.js"], null)
+//# sourceMappingURL=/sliders.d75c00dd.js.map
