@@ -15160,6 +15160,25 @@ const mask = selector => {
 };
 var _default = mask;
 exports.default = _default;
+},{}],"js/modules/checkTextInInput.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+const checkTextInInputs = selector => {
+  const txtInputs = document.querySelectorAll(selector);
+  txtInputs.forEach(input => {
+    input.addEventListener('keypress', e => {
+      if (e.key.match(/[^а-яё 0-9]/gi)) {
+        e.preventDefault();
+      }
+    });
+  });
+};
+var _default = checkTextInInputs;
+exports.default = _default;
 },{}],"js/main.js":[function(require,module,exports) {
 "use strict";
 
@@ -15167,6 +15186,7 @@ var _modals = _interopRequireWildcard(require("./modules/modals"));
 var _sliders = _interopRequireDefault(require("./modules/sliders"));
 var _forms = _interopRequireDefault(require("./modules/forms"));
 var _mask = _interopRequireDefault(require("./modules/mask"));
+var _checkTextInInput = _interopRequireDefault(require("./modules/checkTextInInput"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -15179,8 +15199,10 @@ window.addEventListener("DOMContentLoaded", () => {
   (0, _sliders.default)('.main-slider-item', 'vertical');
   (0, _forms.default)();
   (0, _mask.default)('[name="phone"]');
+  (0, _checkTextInInput.default)('[name="name"]');
+  (0, _checkTextInInput.default)('[name="message"]');
 });
-},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js","./modules/mask":"js/modules/mask.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js","./modules/mask":"js/modules/mask.js","./modules/checkTextInInput":"js/modules/checkTextInInput.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -15205,7 +15227,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61832" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51044" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
