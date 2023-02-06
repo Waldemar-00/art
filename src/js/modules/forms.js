@@ -1,18 +1,8 @@
-
-// const checkNum = (selector) => {
-    // const inputs = document.querySelectorAll(selector);
-    // inputs.forEach((input) => {
-        // input.addEventListener('input', () => {
-            // input.value = input.value.replace(/\D/, '');
-        // });
-    // });
-// };
-
+import { postData } from "./services/requests";
 const formsFn = () => {
     const forms = document.querySelectorAll('form');
     const inputs = document.querySelectorAll('input');
     const uploads = document.querySelectorAll('[name="upload"]');
-    //checkNum('input[name="user_phone"]');
     const messege = {
         loading: "Загрузка ваших данных",
         success: "Спасибо, мы скоро с Вами свяжемся!",
@@ -28,20 +18,6 @@ const formsFn = () => {
     const urls = {
         postText: 'https://jsonplaceholder.typicode.com/users',
         postImg: 'https://jsonplaceholder.typicode.com/photos'
-    };
-    const postData = async (url, data) => {
-        const dataObject = {};
-        data.forEach((value, key) => {
-            dataObject[key] = value;
-        });
-        const response = await fetch(url , {
-            method: 'POST',
-            headers: {
-                "Content-type": "application/json;charset=UTF-8",
-            },
-            body: JSON.stringify(dataObject),
-        });
-        return await response.text();
     };
     uploads.forEach(load => {
         load.addEventListener('input', () => {
@@ -66,7 +42,6 @@ const formsFn = () => {
             }, 400);
             const showImg = document.createElement('img');
             showImg.src = messege.spinner;
-            //showImg.setAttribute('src', messege.spinner);
             showImg.classList.add('animated', 'fadeInUp');
             messegeBox.append(showImg);   
             const textMessege = document.createElement('div');

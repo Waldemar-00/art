@@ -117,27 +117,48 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/modules/forms.js":[function(require,module,exports) {
+})({"js/modules/services/requests.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.postData = exports.getData = void 0;
+const postData = async (url, data) => {
+  const dataObject = {};
+  data.forEach((value, key) => {
+    dataObject[key] = value;
+  });
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      "Content-type": "application/json;charset=UTF-8"
+    },
+    body: JSON.stringify(dataObject)
+  });
+  return await response.text();
+};
+exports.postData = postData;
+const getData = async url => {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Could not fetch ${url}, status: ${response.status}`);
+  }
+  return await response.json();
+};
+exports.getData = getData;
+},{}],"js/modules/forms.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-// const checkNum = (selector) => {
-// const inputs = document.querySelectorAll(selector);
-// inputs.forEach((input) => {
-// input.addEventListener('input', () => {
-// input.value = input.value.replace(/\D/, '');
-// });
-// });
-// };
-
+var _requests = require("./services/requests");
 const formsFn = () => {
   const forms = document.querySelectorAll('form');
   const inputs = document.querySelectorAll('input');
   const uploads = document.querySelectorAll('[name="upload"]');
-  //checkNum('input[name="user_phone"]');
   const messege = {
     loading: "Загрузка ваших данных",
     success: "Спасибо, мы скоро с Вами свяжемся!",
@@ -153,20 +174,6 @@ const formsFn = () => {
   const urls = {
     postText: 'https://jsonplaceholder.typicode.com/users',
     postImg: 'https://jsonplaceholder.typicode.com/photos'
-  };
-  const postData = async (url, data) => {
-    const dataObject = {};
-    data.forEach((value, key) => {
-      dataObject[key] = value;
-    });
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        "Content-type": "application/json;charset=UTF-8"
-      },
-      body: JSON.stringify(dataObject)
-    });
-    return await response.text();
   };
   uploads.forEach(load => {
     load.addEventListener('input', () => {
@@ -189,7 +196,6 @@ const formsFn = () => {
       }, 400);
       const showImg = document.createElement('img');
       showImg.src = messege.spinner;
-      //showImg.setAttribute('src', messege.spinner);
       showImg.classList.add('animated', 'fadeInUp');
       messegeBox.append(showImg);
       const textMessege = document.createElement('div');
@@ -199,7 +205,7 @@ const formsFn = () => {
       let api;
       form.closest('.popup-design') || form.classList.contains('calc_form') ? api = urls.postImg : api = urls.postText;
       console.log(api);
-      postData(api, formData).then(response => {
+      (0, _requests.postData)(api, formData).then(response => {
         console.log(response);
         showImg.setAttribute('src', messege.ok);
         textMessege.textContent = messege.success;
@@ -221,7 +227,7 @@ const formsFn = () => {
 };
 var _default = formsFn;
 exports.default = _default;
-},{}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./services/requests":"js/modules/services/requests.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -246,7 +252,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59575" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65062" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

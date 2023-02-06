@@ -15020,27 +15020,48 @@ const sliders = (slides, direction, previous, nexter) => {
 var _default = sliders; // sliders('.feedback-slider-item', '', '.main-prev-btn', '.main-next-btn');
 // sliders('.main-slider-item', 'vertical', '', '');
 exports.default = _default;
-},{"ee-first":"../node_modules/ee-first/index.js"}],"js/modules/forms.js":[function(require,module,exports) {
+},{"ee-first":"../node_modules/ee-first/index.js"}],"js/modules/services/requests.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.postData = exports.getData = void 0;
+const postData = async (url, data) => {
+  const dataObject = {};
+  data.forEach((value, key) => {
+    dataObject[key] = value;
+  });
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      "Content-type": "application/json;charset=UTF-8"
+    },
+    body: JSON.stringify(dataObject)
+  });
+  return await response.text();
+};
+exports.postData = postData;
+const getData = async url => {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Could not fetch ${url}, status: ${response.status}`);
+  }
+  return await response.json();
+};
+exports.getData = getData;
+},{}],"js/modules/forms.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-// const checkNum = (selector) => {
-// const inputs = document.querySelectorAll(selector);
-// inputs.forEach((input) => {
-// input.addEventListener('input', () => {
-// input.value = input.value.replace(/\D/, '');
-// });
-// });
-// };
-
+var _requests = require("./services/requests");
 const formsFn = () => {
   const forms = document.querySelectorAll('form');
   const inputs = document.querySelectorAll('input');
   const uploads = document.querySelectorAll('[name="upload"]');
-  //checkNum('input[name="user_phone"]');
   const messege = {
     loading: "Загрузка ваших данных",
     success: "Спасибо, мы скоро с Вами свяжемся!",
@@ -15056,20 +15077,6 @@ const formsFn = () => {
   const urls = {
     postText: 'https://jsonplaceholder.typicode.com/users',
     postImg: 'https://jsonplaceholder.typicode.com/photos'
-  };
-  const postData = async (url, data) => {
-    const dataObject = {};
-    data.forEach((value, key) => {
-      dataObject[key] = value;
-    });
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        "Content-type": "application/json;charset=UTF-8"
-      },
-      body: JSON.stringify(dataObject)
-    });
-    return await response.text();
   };
   uploads.forEach(load => {
     load.addEventListener('input', () => {
@@ -15092,7 +15099,6 @@ const formsFn = () => {
       }, 400);
       const showImg = document.createElement('img');
       showImg.src = messege.spinner;
-      //showImg.setAttribute('src', messege.spinner);
       showImg.classList.add('animated', 'fadeInUp');
       messegeBox.append(showImg);
       const textMessege = document.createElement('div');
@@ -15102,7 +15108,7 @@ const formsFn = () => {
       let api;
       form.closest('.popup-design') || form.classList.contains('calc_form') ? api = urls.postImg : api = urls.postText;
       console.log(api);
-      postData(api, formData).then(response => {
+      (0, _requests.postData)(api, formData).then(response => {
         console.log(response);
         showImg.setAttribute('src', messege.ok);
         textMessege.textContent = messege.success;
@@ -15124,7 +15130,7 @@ const formsFn = () => {
 };
 var _default = formsFn;
 exports.default = _default;
-},{}],"js/modules/mask.js":[function(require,module,exports) {
+},{"./services/requests":"js/modules/services/requests.js"}],"js/modules/mask.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15200,7 +15206,52 @@ const checkTextInInputs = selector => {
 };
 var _default = checkTextInInputs;
 exports.default = _default;
-},{}],"js/main.js":[function(require,module,exports) {
+},{}],"js/modules/showStylesFromServer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _requests = require("./services/requests");
+const showStylesFromServer = (wrapper, buttonSelector) => {
+  const button = document.querySelector(buttonSelector);
+
+  // button.addEventListener('click', (e) => {
+  // styles.forEach(style => {
+  // style.classList.add('animated', 'fadeInUp');
+  // style.classList.remove("hidden-lg", "hidden-md", "hidden-sm","hidden-xs");
+  // style.classList.add("col-sm-3", "col-sm-offset-0", "col-xs-10", "col-xs-offset-1");
+  // });
+  // button.style.display = "none";
+  // });
+  button.addEventListener("click", e => {
+    (0, _requests.getData)('http://localhost:3000/styles').then(response => createStyle(response)).catch(error => console.log(error));
+    e.target.style.display = "none";
+  });
+  const createStyle = response => {
+    response.forEach(_ref => {
+      let {
+        src,
+        title,
+        link
+      } = _ref;
+      const style = document.createElement('div');
+      style.classList.add('animated', 'fadeInUp', "col-sm-3", "col-sm-offset-0", "col-xs-10", "col-xs-offset-1");
+      style.innerHTML = `
+	            <div class=styles-block>
+		            <img src=${src} alt=style>
+		            <h4>${title}</h4>
+		            <a href=${link}>Подробнее</a>
+	            </div>
+            `;
+      document.querySelector(wrapper).append(style);
+    });
+  };
+};
+var _default = showStylesFromServer;
+exports.default = _default;
+},{"./services/requests":"js/modules/services/requests.js"}],"js/main.js":[function(require,module,exports) {
 "use strict";
 
 var _modals = _interopRequireWildcard(require("./modules/modals"));
@@ -15209,6 +15260,7 @@ var _forms = _interopRequireDefault(require("./modules/forms"));
 var _mask = _interopRequireDefault(require("./modules/mask"));
 var _showMoreStyles = _interopRequireDefault(require("./modules/showMoreStyles"));
 var _checkTextInInput = _interopRequireDefault(require("./modules/checkTextInInput"));
+var _showStylesFromServer = _interopRequireDefault(require("./modules/showStylesFromServer"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -15223,9 +15275,10 @@ window.addEventListener("DOMContentLoaded", () => {
   (0, _mask.default)('[name="phone"]');
   (0, _checkTextInInput.default)('[name="name"]');
   (0, _checkTextInInput.default)('[name="message"]');
-  (0, _showMoreStyles.default)('.styles-2', '.button-styles');
+  //showMoreStyles('.styles-2', '.button-styles');
+  (0, _showStylesFromServer.default)('#styles .row', '.button-styles');
 });
-},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js","./modules/mask":"js/modules/mask.js","./modules/showMoreStyles":"js/modules/showMoreStyles.js","./modules/checkTextInInput":"js/modules/checkTextInInput.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js","./modules/mask":"js/modules/mask.js","./modules/showMoreStyles":"js/modules/showMoreStyles.js","./modules/checkTextInInput":"js/modules/checkTextInInput.js","./modules/showStylesFromServer":"js/modules/showStylesFromServer.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -15250,7 +15303,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59575" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65062" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

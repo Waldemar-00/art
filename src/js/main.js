@@ -4,6 +4,7 @@ import formsFn from "./modules/forms";
 import mask from "./modules/mask";
 import showMoreStyles from "./modules/showMoreStyles";
 import checkTextInInputs from "./modules/checkTextInInput";
+import showStylesFromServer from "./modules/showStylesFromServer";
 import { indentifierBrowser } from "./modules/modals";
 window.addEventListener("DOMContentLoaded", () => {
     "use strict";
@@ -15,5 +16,6 @@ window.addEventListener("DOMContentLoaded", () => {
     mask('[name="phone"]');
     checkTextInInputs('[name="name"]');
     checkTextInInputs('[name="message"]');
-    showMoreStyles('.styles-2','.button-styles');
+    //showMoreStyles('.styles-2', '.button-styles');
+    showStylesFromServer('#styles .row', '.button-styles');
 });
