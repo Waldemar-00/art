@@ -2,6 +2,7 @@ import modals from "./modules/modals";
 import sliders from "./modules/sliders";
 import formsFn from "./modules/forms";
 import mask from "./modules/mask";
+import showMoreStyles from "./modules/showMoreStyles";
 import checkTextInInputs from "./modules/checkTextInInput";
 import { indentifierBrowser } from "./modules/modals";
 window.addEventListener("DOMContentLoaded", () => {
@@ -14,4 +15,5 @@ window.addEventListener("DOMContentLoaded", () => {
     mask('[name="phone"]');
     checkTextInInputs('[name="name"]');
     checkTextInInputs('[name="message"]');
+    showMoreStyles('.styles-2','.button-styles');
 });

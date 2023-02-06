@@ -15160,6 +15160,27 @@ const mask = selector => {
 };
 var _default = mask;
 exports.default = _default;
+},{}],"js/modules/showMoreStyles.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+const showMoreStyles = (stylesSelector, buttonSelector) => {
+  const styles = document.querySelectorAll(stylesSelector);
+  const button = document.querySelector(buttonSelector);
+  button.addEventListener('click', e => {
+    styles.forEach(style => {
+      style.classList.add('animated', 'fadeInUp');
+      style.classList.remove("hidden-lg", "hidden-md", "hidden-sm", "hidden-xs");
+      style.classList.add("col-sm-3", "col-sm-offset-0", "col-xs-10", "col-xs-offset-1");
+    });
+    button.style.display = "none";
+  });
+};
+var _default = showMoreStyles;
+exports.default = _default;
 },{}],"js/modules/checkTextInInput.js":[function(require,module,exports) {
 "use strict";
 
@@ -15186,6 +15207,7 @@ var _modals = _interopRequireWildcard(require("./modules/modals"));
 var _sliders = _interopRequireDefault(require("./modules/sliders"));
 var _forms = _interopRequireDefault(require("./modules/forms"));
 var _mask = _interopRequireDefault(require("./modules/mask"));
+var _showMoreStyles = _interopRequireDefault(require("./modules/showMoreStyles"));
 var _checkTextInInput = _interopRequireDefault(require("./modules/checkTextInInput"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -15201,8 +15223,9 @@ window.addEventListener("DOMContentLoaded", () => {
   (0, _mask.default)('[name="phone"]');
   (0, _checkTextInInput.default)('[name="name"]');
   (0, _checkTextInInput.default)('[name="message"]');
+  (0, _showMoreStyles.default)('.styles-2', '.button-styles');
 });
-},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js","./modules/mask":"js/modules/mask.js","./modules/checkTextInInput":"js/modules/checkTextInInput.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js","./modules/mask":"js/modules/mask.js","./modules/showMoreStyles":"js/modules/showMoreStyles.js","./modules/checkTextInInput":"js/modules/checkTextInInput.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -15227,7 +15250,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51044" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59575" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
