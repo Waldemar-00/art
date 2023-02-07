@@ -129,6 +129,8 @@ const postData = async (url, data) => {
   data.forEach((value, key) => {
     dataObject[key] = value;
   });
+  const calcPrice = document.querySelector('.calc-price').innerText;
+  dataObject.Price = calcPrice;
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -252,7 +254,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65062" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55121" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

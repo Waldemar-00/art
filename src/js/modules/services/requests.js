@@ -3,6 +3,8 @@ const postData = async (url, data) => {
     data.forEach((value, key) => {
         dataObject[key] = value;
     });
+    const calcPrice = document.querySelector('.calc-price').innerText;
+    dataObject.Price = calcPrice;
     const response = await fetch(url , {
         method: 'POST',
         headers: {

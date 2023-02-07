@@ -5,6 +5,7 @@ import mask from "./modules/mask";
 import showMoreStyles from "./modules/showMoreStyles";
 import checkTextInInputs from "./modules/checkTextInInput";
 import showStylesFromServer from "./modules/showStylesFromServer";
+import calculate from "./modules/calculate";
 import { indentifierBrowser } from "./modules/modals";
 window.addEventListener("DOMContentLoaded", () => {
     "use strict";
@@ -18,4 +19,5 @@ window.addEventListener("DOMContentLoaded", () => {
     checkTextInInputs('[name="message"]');
     //showMoreStyles('.styles-2', '.button-styles');
     showStylesFromServer('#styles .row', '.button-styles');
+    calculate('#size', '#material', '#options', '.promocode', '.calc-price');
 });

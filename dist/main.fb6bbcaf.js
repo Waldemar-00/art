@@ -15032,6 +15032,8 @@ const postData = async (url, data) => {
   data.forEach((value, key) => {
     dataObject[key] = value;
   });
+  const calcPrice = document.querySelector('.calc-price').innerText;
+  dataObject.Price = calcPrice;
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -15216,15 +15218,6 @@ exports.default = void 0;
 var _requests = require("./services/requests");
 const showStylesFromServer = (wrapper, buttonSelector) => {
   const button = document.querySelector(buttonSelector);
-
-  // button.addEventListener('click', (e) => {
-  // styles.forEach(style => {
-  // style.classList.add('animated', 'fadeInUp');
-  // style.classList.remove("hidden-lg", "hidden-md", "hidden-sm","hidden-xs");
-  // style.classList.add("col-sm-3", "col-sm-offset-0", "col-xs-10", "col-xs-offset-1");
-  // });
-  // button.style.display = "none";
-  // });
   button.addEventListener("click", e => {
     (0, _requests.getData)('http://localhost:3000/styles').then(response => createStyle(response)).catch(error => console.log(error));
     e.target.style.display = "none";
@@ -15251,7 +15244,38 @@ const showStylesFromServer = (wrapper, buttonSelector) => {
 };
 var _default = showStylesFromServer;
 exports.default = _default;
-},{"./services/requests":"js/modules/services/requests.js"}],"js/main.js":[function(require,module,exports) {
+},{"./services/requests":"js/modules/services/requests.js"}],"js/modules/calculate.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+const calculate = (size, material, options, promocode, rezult) => {
+  const sizeBlock = document.querySelector(size);
+  const materialBlock = document.querySelector(material);
+  const optionsBlock = document.querySelector(options);
+  const promo = document.querySelector(promocode);
+  const rez = document.querySelector(rezult);
+  let sum = 0;
+  const calculateFu = () => {
+    sum = sizeBlock.value * materialBlock.value + +optionsBlock.value;
+    if (!sizeBlock.value || !materialBlock.value) {
+      rez.innerText = 'Пожалуйста, выберите pазмер и материал картины!';
+    } else if (promo.value === ' IWANTPOPART') {
+      rez.innerText = sum * 0.7;
+    } else {
+      rez.innerText = sum;
+    }
+  };
+  sizeBlock.addEventListener('change', calculateFu);
+  materialBlock.addEventListener('change', calculateFu);
+  optionsBlock.addEventListener('change', calculateFu);
+  promo.addEventListener('input', calculateFu);
+};
+var _default = calculate;
+exports.default = _default;
+},{}],"js/main.js":[function(require,module,exports) {
 "use strict";
 
 var _modals = _interopRequireWildcard(require("./modules/modals"));
@@ -15261,6 +15285,7 @@ var _mask = _interopRequireDefault(require("./modules/mask"));
 var _showMoreStyles = _interopRequireDefault(require("./modules/showMoreStyles"));
 var _checkTextInInput = _interopRequireDefault(require("./modules/checkTextInInput"));
 var _showStylesFromServer = _interopRequireDefault(require("./modules/showStylesFromServer"));
+var _calculate = _interopRequireDefault(require("./modules/calculate"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -15277,8 +15302,9 @@ window.addEventListener("DOMContentLoaded", () => {
   (0, _checkTextInInput.default)('[name="message"]');
   //showMoreStyles('.styles-2', '.button-styles');
   (0, _showStylesFromServer.default)('#styles .row', '.button-styles');
+  (0, _calculate.default)('#size', '#material', '#options', '.promocode', '.calc-price');
 });
-},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js","./modules/mask":"js/modules/mask.js","./modules/showMoreStyles":"js/modules/showMoreStyles.js","./modules/checkTextInInput":"js/modules/checkTextInInput.js","./modules/showStylesFromServer":"js/modules/showStylesFromServer.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js","./modules/mask":"js/modules/mask.js","./modules/showMoreStyles":"js/modules/showMoreStyles.js","./modules/checkTextInInput":"js/modules/checkTextInInput.js","./modules/showStylesFromServer":"js/modules/showStylesFromServer.js","./modules/calculate":"js/modules/calculate.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -15303,7 +15329,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65062" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55121" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
