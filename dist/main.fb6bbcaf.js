@@ -15275,6 +15275,65 @@ const calculate = (size, material, options, promocode, rezult) => {
 };
 var _default = calculate;
 exports.default = _default;
+},{}],"js/modules/filter.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+const filter = () => {
+  const menu = document.querySelector('.portfolio-menu'),
+    all = menu.querySelector('.all'),
+    lovers = menu.querySelector('.lovers'),
+    chef = menu.querySelector('.chef'),
+    girl = menu.querySelector('.girl'),
+    guy = menu.querySelector('.guy'),
+    grandmother = menu.querySelector('.grandmother'),
+    granddad = menu.querySelector('.granddad'),
+    li = menu.querySelectorAll('li');
+  const wrapper = document.querySelector('.portfolio-wrapper'),
+    markAll = wrapper.querySelectorAll('.all'),
+    markGirl = wrapper.querySelectorAll('.girl'),
+    markLovers = wrapper.querySelectorAll('.lovers'),
+    markGuy = wrapper.querySelectorAll('.guy'),
+    markChef = wrapper.querySelectorAll('.chef'),
+    no = document.querySelector('.portfolio-no');
+  const filterType = markType => {
+    markAll.forEach(one => {
+      one.style.display = 'none';
+      one.classList.remove('animated', 'fadeIn');
+    });
+    no.style.display = 'none';
+    no.classList.remove('animated', 'fadeIn');
+    if (!markType) {
+      no.classList.add('animated', 'fadeIn');
+      no.style.display = 'block';
+    } else {
+      markType.forEach(mark => {
+        mark.style.display = 'block';
+        mark.classList.add('animated', 'fadeIn');
+      });
+    }
+  };
+  all.addEventListener('click', () => filterType(markAll));
+  lovers.addEventListener('click', () => filterType(markLovers));
+  chef.addEventListener('click', () => filterType(markChef));
+  girl.addEventListener('click', () => filterType(markGirl));
+  guy.addEventListener('click', () => filterType(markGuy));
+  grandmother.addEventListener('click', () => filterType());
+  granddad.addEventListener('click', () => filterType());
+  menu.addEventListener('click', e => {
+    if (e.target && e.target.tagName === 'LI') {
+      li.forEach(li => {
+        li.classList.remove('active');
+      });
+      e.target.classList.add('active');
+    }
+  });
+};
+var _default = filter;
+exports.default = _default;
 },{}],"js/main.js":[function(require,module,exports) {
 "use strict";
 
@@ -15286,6 +15345,7 @@ var _showMoreStyles = _interopRequireDefault(require("./modules/showMoreStyles")
 var _checkTextInInput = _interopRequireDefault(require("./modules/checkTextInInput"));
 var _showStylesFromServer = _interopRequireDefault(require("./modules/showStylesFromServer"));
 var _calculate = _interopRequireDefault(require("./modules/calculate"));
+var _filter = _interopRequireDefault(require("./modules/filter"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -15303,8 +15363,9 @@ window.addEventListener("DOMContentLoaded", () => {
   //showMoreStyles('.styles-2', '.button-styles');
   (0, _showStylesFromServer.default)('#styles .row', '.button-styles');
   (0, _calculate.default)('#size', '#material', '#options', '.promocode', '.calc-price');
+  (0, _filter.default)();
 });
-},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js","./modules/mask":"js/modules/mask.js","./modules/showMoreStyles":"js/modules/showMoreStyles.js","./modules/checkTextInInput":"js/modules/checkTextInInput.js","./modules/showStylesFromServer":"js/modules/showStylesFromServer.js","./modules/calculate":"js/modules/calculate.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js","./modules/mask":"js/modules/mask.js","./modules/showMoreStyles":"js/modules/showMoreStyles.js","./modules/checkTextInInput":"js/modules/checkTextInInput.js","./modules/showStylesFromServer":"js/modules/showStylesFromServer.js","./modules/calculate":"js/modules/calculate.js","./modules/filter":"js/modules/filter.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -15329,7 +15390,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55121" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53032" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

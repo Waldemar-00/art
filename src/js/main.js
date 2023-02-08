@@ -6,6 +6,7 @@ import showMoreStyles from "./modules/showMoreStyles";
 import checkTextInInputs from "./modules/checkTextInInput";
 import showStylesFromServer from "./modules/showStylesFromServer";
 import calculate from "./modules/calculate";
+import filter from "./modules/filter";
 import { indentifierBrowser } from "./modules/modals";
 window.addEventListener("DOMContentLoaded", () => {
     "use strict";
@@ -20,4 +21,5 @@ window.addEventListener("DOMContentLoaded", () => {
     //showMoreStyles('.styles-2', '.button-styles');
     showStylesFromServer('#styles .row', '.button-styles');
     calculate('#size', '#material', '#options', '.promocode', '.calc-price');
+    filter();
 });
