@@ -1,4 +1,3 @@
-'use strict';
 const showPictures = (selectorImg) => {
     const pictures = document.querySelectorAll(selectorImg);
     const showImg = (picture) => {
