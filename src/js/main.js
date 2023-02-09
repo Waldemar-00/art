@@ -7,6 +7,7 @@ import checkTextInInputs from "./modules/checkTextInInput";
 import showStylesFromServer from "./modules/showStylesFromServer";
 import calculate from "./modules/calculate";
 import filter from "./modules/filter";
+import showPictures from "./modules/showPictures";
 import { indentifierBrowser } from "./modules/modals";
 window.addEventListener("DOMContentLoaded", () => {
     "use strict";
@@ -18,8 +19,9 @@ window.addEventListener("DOMContentLoaded", () => {
     mask('[name="phone"]');
     checkTextInInputs('[name="name"]');
     checkTextInInputs('[name="message"]');
-    //showMoreStyles('.styles-2', '.button-styles');
-    showStylesFromServer('#styles .row', '.button-styles');
+    showMoreStyles('.styles-2', '.button-styles');
+    // showStylesFromServer('#styles .row', '.button-styles');
     calculate('#size', '#material', '#options', '.promocode', '.calc-price');
     filter();
+    showPictures('.sizes-block');
 });

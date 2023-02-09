@@ -15334,6 +15334,40 @@ const filter = () => {
 };
 var _default = filter;
 exports.default = _default;
+},{}],"js/modules/showPictures.js":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+const showPictures = selectorImg => {
+  const pictures = document.querySelectorAll(selectorImg);
+  const showImg = picture => {
+    const img = picture.querySelector('img');
+    img.src = img.src.slice(0, -4) + "-1.png";
+    picture.querySelectorAll('p:not(.sizes-hit)').forEach(p => {
+      p.style.display = 'none';
+    });
+  };
+  const hiddenImg = picture => {
+    const img = picture.querySelector('img');
+    img.src = img.src.slice(0, -6) + ".png";
+    picture.querySelectorAll('p:not(.sizes-hit)').forEach(p => {
+      p.style.display = 'block';
+    });
+  };
+  pictures.forEach(pic => {
+    pic.addEventListener('mouseover', () => {
+      showImg(pic);
+    });
+    pic.addEventListener('mouseout', () => {
+      hiddenImg(pic);
+    });
+  });
+};
+var _default = showPictures;
+exports.default = _default;
 },{}],"js/main.js":[function(require,module,exports) {
 "use strict";
 
@@ -15346,6 +15380,7 @@ var _checkTextInInput = _interopRequireDefault(require("./modules/checkTextInInp
 var _showStylesFromServer = _interopRequireDefault(require("./modules/showStylesFromServer"));
 var _calculate = _interopRequireDefault(require("./modules/calculate"));
 var _filter = _interopRequireDefault(require("./modules/filter"));
+var _showPictures = _interopRequireDefault(require("./modules/showPictures"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -15360,12 +15395,13 @@ window.addEventListener("DOMContentLoaded", () => {
   (0, _mask.default)('[name="phone"]');
   (0, _checkTextInInput.default)('[name="name"]');
   (0, _checkTextInInput.default)('[name="message"]');
-  //showMoreStyles('.styles-2', '.button-styles');
-  (0, _showStylesFromServer.default)('#styles .row', '.button-styles');
+  (0, _showMoreStyles.default)('.styles-2', '.button-styles');
+  // showStylesFromServer('#styles .row', '.button-styles');
   (0, _calculate.default)('#size', '#material', '#options', '.promocode', '.calc-price');
   (0, _filter.default)();
+  (0, _showPictures.default)('.sizes-block');
 });
-},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js","./modules/mask":"js/modules/mask.js","./modules/showMoreStyles":"js/modules/showMoreStyles.js","./modules/checkTextInInput":"js/modules/checkTextInInput.js","./modules/showStylesFromServer":"js/modules/showStylesFromServer.js","./modules/calculate":"js/modules/calculate.js","./modules/filter":"js/modules/filter.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/modals":"js/modules/modals.js","./modules/sliders":"js/modules/sliders.js","./modules/forms":"js/modules/forms.js","./modules/mask":"js/modules/mask.js","./modules/showMoreStyles":"js/modules/showMoreStyles.js","./modules/checkTextInInput":"js/modules/checkTextInInput.js","./modules/showStylesFromServer":"js/modules/showStylesFromServer.js","./modules/calculate":"js/modules/calculate.js","./modules/filter":"js/modules/filter.js","./modules/showPictures":"js/modules/showPictures.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -15390,7 +15426,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53032" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64198" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
