@@ -6,10 +6,10 @@ const calculate = (size, material, options, promocode, rezult) => {
     const rez = document.querySelector(rezult);
     let sum = 0;
     const calculateFu = () => {
-         sum = sizeBlock.value * materialBlock.value + +optionsBlock.value;
+         sum = sizeBlock.value * materialBlock.value + (+optionsBlock.value);
         if (!sizeBlock.value || !materialBlock.value) {
             rez.innerText = 'Пожалуйста, выберите pазмер и материал картины!';
-        } else if (promo.value === ' IWANTPOPART') {
+        } else if (promo.value === 'IWANTPOPART') {
             rez.innerText = sum * 0.7;
         } else {
             rez.innerText = sum;
