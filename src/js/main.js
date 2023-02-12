@@ -9,6 +9,7 @@ import calculate from "./modules/calculate";
 import filter from "./modules/filter";
 import showPictures from "./modules/showPictures";
 import accordion from "./modules/accordion";
+import accordionOnJS from "./modules/accordionOnJS";
 import { indentifierBrowser } from "./modules/modals";
 window.addEventListener("DOMContentLoaded", () => {
     "use strict";
@@ -25,5 +26,6 @@ window.addEventListener("DOMContentLoaded", () => {
     calculate('#size', '#material', '#options', '.promocode', '.calc-price');
     filter();
     showPictures('.sizes-block');
-    accordion('.accordion-heading', '.accordion-block');
+    //accordion('.accordion-heading', '.accordion-block');
+    accordionOnJS('.accordion-heading');
 });

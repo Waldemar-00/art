@@ -929,10 +929,23 @@ h4 {
   border: 0;
 }
 .often-questions .accordion-block {
-  display: none;  
-  /* ACCORDION ON CSS + JS */
-  margin-top: 1rem;
+  /* ACCORDION ON JS */
   background-color: #f7e7e6;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.5s ease-out;
+  overflow: hidden;
+  /* ACCORDION ON CSS + JS */
+  /* display: none;   */
+  /* margin-top: 1rem; */
+  /* background-color: #f7e7e6; */
+  /* padding: 3rem 4rem; */
+}
+.often-questions .accordion-block.active-content {
+  /* ACCORDION ON JS */
+  overflow: visible;
+  opacity: 1;
+  margin-top: 1rem;
   padding: 3rem 4rem;
 }
 /* ACCORDION ON CSS + JS */
