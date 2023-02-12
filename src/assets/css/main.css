@@ -918,11 +918,24 @@ h4 {
 .often-questions .accordion-heading span {
   border-bottom: 2px dotted #333;
 }
+/* ACCORDION ON CSS + JS */
+.often-questions .accordion-heading.active+.accordion-block {  /* ACCORDION ON CSS + JS */
+  display: block;
+}
+.often-questions p.active-style span {  /* ACCORDION ON CSS + JS */
+  color: #EE5FDD;
+  font-weight: 900;
+  text-decoration: none;
+  border: 0;
+}
 .often-questions .accordion-block {
+  display: none;  
+  /* ACCORDION ON CSS + JS */
   margin-top: 1rem;
   background-color: #f7e7e6;
   padding: 3rem 4rem;
 }
+/* ACCORDION ON CSS + JS */
 .often-questions .accordion-block:before {
   content: '';
   position: absolute;
