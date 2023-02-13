@@ -10,6 +10,7 @@ import filter from "./modules/filter";
 import showPictures from "./modules/showPictures";
 import accordion from "./modules/accordion";
 import accordionOnJS from "./modules/accordionOnJS";
+import burger from "./modules/burger";
 import { indentifierBrowser } from "./modules/modals";
 window.addEventListener("DOMContentLoaded", () => {
     "use strict";
@@ -28,4 +29,5 @@ window.addEventListener("DOMContentLoaded", () => {
     showPictures('.sizes-block');
     //accordion('.accordion-heading', '.accordion-block');
     accordionOnJS('.accordion-heading');
+    burger('.burger', '.burger-menu');
 });
