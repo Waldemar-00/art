@@ -11,6 +11,7 @@ import showPictures from "./modules/showPictures";
 import accordion from "./modules/accordion";
 import accordionOnJS from "./modules/accordionOnJS";
 import burger from "./modules/burger";
+import scrolling from "./modules/scrolling";
 import { indentifierBrowser } from "./modules/modals";
 window.addEventListener("DOMContentLoaded", () => {
     "use strict";
@@ -30,4 +31,5 @@ window.addEventListener("DOMContentLoaded", () => {
     //accordion('.accordion-heading', '.accordion-block');
     accordionOnJS('.accordion-heading');
     burger('.burger', '.burger-menu');
+    scrolling('.pageup');
 });
