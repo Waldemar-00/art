@@ -33,5 +33,5 @@ window.addEventListener("DOMContentLoaded", () => {
     accordionOnJS('.accordion-heading');
     burger('.burger', '.burger-menu');
     //scrolling('.pageup');
-    scrollingFrame('.pageup');
+    //scrollingFrame('.pageup');
 });
