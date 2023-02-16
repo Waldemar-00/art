@@ -1,4 +1,4 @@
-const scrollHtml = (selectorUp) => {
+const scrollElem = (selectorUp) => {
     window.addEventListener('scroll', () => {
         if (document.documentElement.scrollTop > 2750) {
             document.querySelector(selectorUp).style.opacity = 1;
@@ -7,4 +7,4 @@ const scrollHtml = (selectorUp) => {
         }
     });
 };
-export default scrollHtml;
+export default scrollElem;
