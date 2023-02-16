@@ -13,6 +13,7 @@ import accordionOnJS from "./modules/accordionOnJS";
 import burger from "./modules/burger";
 import scrolling from "./modules/scrolling";
 import scrollingFrame from "./modules/scrollingFrame";
+import scrollHtml from "./modules/htmlScroll";
 import { indentifierBrowser } from "./modules/modals";
 window.addEventListener("DOMContentLoaded", () => {
     "use strict";
@@ -34,4 +35,5 @@ window.addEventListener("DOMContentLoaded", () => {
     burger('.burger', '.burger-menu');
     //scrolling('.pageup');
     //scrollingFrame('.pageup');
+    scrollHtml('.pageup');
 });
