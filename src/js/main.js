@@ -14,6 +14,7 @@ import burger from "./modules/burger";
 import scrolling from "./modules/scrolling";
 import scrollingFrame from "./modules/scrollingFrame";
 import scrollHtml from "./modules/htmlScroll";
+import dragDrop from "./modules/drag&Drop";
 import { indentifierBrowser } from "./modules/modals";
 window.addEventListener("DOMContentLoaded", () => {
     "use strict";
@@ -36,4 +37,5 @@ window.addEventListener("DOMContentLoaded", () => {
     //scrolling('.pageup');
     //scrollingFrame('.pageup');
     scrollHtml('.pageup');
+    dragDrop();
 });

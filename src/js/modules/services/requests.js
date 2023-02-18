@@ -12,7 +12,7 @@ const postData = async (url, data) => {
         },
         body: JSON.stringify(dataObject),
     });
-    return await response.text();
+    return await response.json();
 };
 
 const getData = async (url) => {

@@ -52,7 +52,6 @@ const formsFn = () => {
             let api;
             form.closest('.popup-design') || form.classList.contains('calc_form') ?
                 api = urls.postImg : api = urls.postText;
-            console.log(api);
             postData(api, formData)
                 .then(response => {
                     console.log(response);
